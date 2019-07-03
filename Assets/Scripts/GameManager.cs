@@ -71,4 +71,7 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(sceneIndex);
     }
 
+    public List<GameObject> GetPlayers () {
+        return players;
+    }
 }

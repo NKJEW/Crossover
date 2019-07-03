@@ -16,7 +16,7 @@ public class ShootingController : MonoBehaviour {
         playerID = GetComponent<HealthController>().playerID;
 	}
 
-    void AttemptShoot () {
+    public void AttemptShoot () {
         if (fireTimer <= 0f)
             Shoot();
     }
@@ -32,7 +32,5 @@ public class ShootingController : MonoBehaviour {
 	void Update () {
         if (fireTimer > 0f)
             fireTimer -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-            AttemptShoot();
 	}
 }
