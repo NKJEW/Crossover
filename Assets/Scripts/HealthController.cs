@@ -8,12 +8,17 @@ public class HealthController : MonoBehaviour {
     float damageToForceRatio = 10f;
 
     bool dead = false;
-
+    int playerID;
     Rigidbody2D rb;
 
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
 	}
+
+    public void Init (int playerID) {
+        this.playerID = playerID;
+        GetComponentInChildren<SpriteRenderer>().color = GameManager.instance.playerColors[playerID];
+    }
 
     public void TakeDamage (int damage, Vector2 hitPos) {
         health -= damage;
@@ -31,6 +36,8 @@ public class HealthController : MonoBehaviour {
 
 
         Destroy(GetComponent<MovementController>());
+
+        GameManager.instance.PlayerDied(playerID);
         //Destroy(gameObject);
     }
 }

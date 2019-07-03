@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
+    public static GameManager instance;
+
     public GameObject playerPrefab;
     public Color[] playerColors;
     public GameObject gameOverPanel;
@@ -16,7 +18,11 @@ public class GameManager : MonoBehaviour {
 
     List<GameObject> players = new List<GameObject>();
     List<int> playersLeft = new List<int>();
-	
+
+    private void Awake() {
+        instance = this;
+    }
+
     void Start () {
         gameOverPanel.SetActive(false);
         SetupSpawnPoints();
@@ -26,6 +32,7 @@ public class GameManager : MonoBehaviour {
     void SpawnPlayers () {
         for (int i = 0; i < playerCount; i++) {
             GameObject newPlayer = Instantiate(playerPrefab, spawnPoints[i], Quaternion.identity);
+            newPlayer.GetComponent<HealthController>().Init(i);
 
             players.Add(newPlayer);
             playersLeft.Add(i);
