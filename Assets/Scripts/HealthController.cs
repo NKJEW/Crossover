@@ -8,7 +8,8 @@ public class HealthController : MonoBehaviour {
     float damageToForceRatio = 10f;
 
     bool dead = false;
-    int playerID;
+    [HideInInspector]
+    public int playerID;
     Rigidbody2D rb;
 
 	void Start () {
